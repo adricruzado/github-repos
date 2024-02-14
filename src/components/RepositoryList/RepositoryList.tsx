@@ -12,8 +12,9 @@ const RepositoryList = ({
   return (
     <RepositoryListStyled>
       {repositories.map((repository) => (
-        <li key={repository.id}>
-          <span>{repository.name}</span> - {repository.language}
+        <li className="repository" key={repository.id}>
+          <span className="repository__name">{repository.name}</span>
+          <span className="repository__language">{repository.language}</span>
         </li>
       ))}
     </RepositoryListStyled>
