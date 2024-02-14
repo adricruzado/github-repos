@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: ${({ theme }) => theme.typography.mainFont};
+    background-color: #f4f4f4;
   }
 
   h1, h2 {

@@ -7,6 +7,7 @@ import {
 } from "../../services/githubService";
 import RepositoryList from "../RepositoryList/RepositoryList";
 import UserCard from "../UserCard/UserCard";
+import AppStyled from "./AppStyled";
 
 const App = (): React.ReactElement => {
   const [username, setUsername] = useState("");
@@ -39,11 +40,14 @@ const App = (): React.ReactElement => {
   }, [username]);
 
   return (
-    <>
+    <AppStyled>
+      <h1 className="app__title">Welcome to Github Repos!</h1>
       <UserInput onSearch={setUsername} />
-      <UserCard userDetails={userDetails} />
-      <RepositoryList repositories={repositories} />
-    </>
+      <div className="app__container">
+        <UserCard userDetails={userDetails} />
+        <RepositoryList repositories={repositories} />
+      </div>
+    </AppStyled>
   );
 };
 
