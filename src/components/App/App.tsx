@@ -1,25 +1,37 @@
 import { useEffect, useState } from "react";
 import UserInput from "../UserInput/UserInput";
-import { Repository } from "../../services/types";
-import { getUserRepositories } from "../../services/githubService";
+import { Repository, UserDetails } from "../../services/types";
+import {
+  getUserDetails,
+  getUserRepositories,
+} from "../../services/githubService";
 import RepositoryList from "../RepositoryList/RepositoryList";
+import UserCard from "../UserCard/UserCard";
 
 const App = (): React.ReactElement => {
   const [username, setUsername] = useState("");
   const [repositories, setRepositories] = useState<Repository[]>([]);
+  const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
 
   useEffect(() => {
     const handleSearch = async () => {
-      try {
-        if (username !== "") {
-          const data = await getUserRepositories(username);
-          setRepositories(data);
-        } else {
+      if (username !== "") {
+        try {
+          const [userData, repoData] = await Promise.all([
+            getUserDetails(username),
+            getUserRepositories(username),
+          ]);
+
+          setUserDetails(userData);
+          setRepositories(repoData);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          setUserDetails(null);
           setRepositories([]);
         }
-      } catch (error) {
-        console.error("Error fetching repositories:", error);
-        throw error;
+      } else {
+        setUserDetails(null);
+        setRepositories([]);
       }
     };
 
@@ -29,6 +41,7 @@ const App = (): React.ReactElement => {
   return (
     <>
       <UserInput onSearch={setUsername} />
+      <UserCard userDetails={userDetails} />
       <RepositoryList repositories={repositories} />
     </>
   );

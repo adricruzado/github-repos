@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Repository } from "./types";
+import { Repository, UserDetails } from "./types";
 
 const GITHUB_API_BASE_URL = "https://api.github.com";
 
@@ -21,4 +21,16 @@ export const getUserRepositories = async (
     console.error("Error fetching repositories:", error);
     throw error;
   }
+};
+
+export const getUserDetails = async (
+  username: string
+): Promise<UserDetails> => {
+  const response = await axios.get(`${GITHUB_API_BASE_URL}/users/${username}`, {
+    headers: {
+      Authorization:
+        "Bearer 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",
+    },
+  });
+  return response.data;
 };

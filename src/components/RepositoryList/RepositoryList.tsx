@@ -10,16 +10,13 @@ const RepositoryList = ({
   repositories,
 }: RepositoryListProps): React.ReactElement => {
   return (
-    <div>
-      <h2>Repositories:</h2>
-      <RepositoryListStyled>
-        {repositories.map((repository) => (
-          <li key={repository.id}>
-            <span>{repository.name}</span> - {repository.language}
-          </li>
-        ))}
-      </RepositoryListStyled>
-    </div>
+    <RepositoryListStyled>
+      {repositories.map((repository) => (
+        <li key={repository.id}>
+          <span>{repository.name}</span> - {repository.language}
+        </li>
+      ))}
+    </RepositoryListStyled>
   );
 };
 
