@@ -7,9 +7,9 @@ const ButtonStyled = styled.button`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.main};
+  background-color: #f0f8ff;
   border-radius: 20px;
-  border: 3px solid black;
+  border: 3px solid ${({ theme }) => theme.colors.accent};
 `;
 
 export default ButtonStyled;
