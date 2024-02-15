@@ -11,8 +11,7 @@ export const getUserRepositories = async (
       `${GITHUB_API_BASE_URL}/users/${username}/repos`,
       {
         headers: {
-          Authorization:
-            "Bearer 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",
+          Authorization: `Bearer ${import.meta.env.VITE_APP_GITHUB_TOKEN}`,
         },
       }
     );
@@ -28,8 +27,7 @@ export const getUserDetails = async (
 ): Promise<UserDetails> => {
   const response = await axios.get(`${GITHUB_API_BASE_URL}/users/${username}`, {
     headers: {
-      Authorization:
-        "Bearer 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",
+      Authorization: `Bearer ${import.meta.env.VITE_APP_GITHUB_TOKEN}`,
     },
   });
   return response.data;
