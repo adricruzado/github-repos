@@ -9,7 +9,7 @@ const RepositoryListStyled = styled.ul`
 
   .repository {
     height: 80px;
-    background-color: #fff;
+    background-color: #f0f8ff;
     border: 1px solid ${({ theme }) => theme.colors.accent};
     padding: 10px;
     border-radius: 5px;
